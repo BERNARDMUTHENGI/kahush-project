@@ -2,208 +2,252 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>Rising Scholars Head Start</title>
     <style>
-        /* ----- RESET & BASE ----- */
+        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: #f5f0eb;
             color: #2d2d2d;
             line-height: 1.6;
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
         }
         a {
             color: #b22234;
             text-decoration: none;
+            transition: color 0.3s;
         }
         a:hover {
             text-decoration: underline;
         }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
         .container {
+            width: 100%;
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* ----- HEADER ----- */
+        /* ===== HEADER ===== */
         header {
             background: #b22234;
             color: #fff;
-            padding: 20px 0;
+            padding: 16px 0 12px 0;
             border-bottom: 5px solid #fdb813;
         }
         header h1 {
-            font-size: 2.2rem;
-            letter-spacing: 1px;
+            font-size: clamp(1.4rem, 4vw, 2.2rem);
+            letter-spacing: 0.5px;
+            line-height: 1.2;
         }
         header h1 span {
             color: #fdb813;
         }
         header .tagline {
-            font-size: 1.1rem;
+            font-size: clamp(0.85rem, 2vw, 1.1rem);
             font-style: italic;
             color: #f5f0eb;
+            margin-top: 2px;
         }
         header .contact-bar {
             margin-top: 10px;
-            font-size: 0.95rem;
+            font-size: clamp(0.75rem, 1.5vw, 0.95rem);
             background: rgba(255, 255, 255, 0.1);
-            padding: 10px 15px;
+            padding: 10px 14px;
             border-radius: 8px;
             display: flex;
             flex-wrap: wrap;
-            gap: 15px 30px;
+            gap: 8px 20px;
+        }
+        header .contact-bar span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
         header .contact-bar i {
             font-style: normal;
             font-weight: bold;
         }
 
-        /* ----- NAV ----- */
+        /* ===== NAV ===== */
         nav {
             background: #2d2d2d;
-            padding: 12px 0;
+            padding: 10px 0;
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 100;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
         nav ul {
             list-style: none;
             display: flex;
             flex-wrap: wrap;
-            gap: 10px 25px;
+            gap: 5px 15px;
             justify-content: center;
         }
         nav ul li a {
             color: #fff;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: clamp(0.75rem, 1.3vw, 1rem);
             padding: 5px 10px;
             border-radius: 4px;
-            transition: background 0.3s;
+            transition: background 0.3s, color 0.3s;
+            display: inline-block;
+            white-space: nowrap;
         }
         nav ul li a:hover {
             background: #b22234;
             text-decoration: none;
         }
+        /* Mobile hamburger - hidden by default, shown on small screens */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 2px solid #fff;
+            color: #fff;
+            font-size: 1.5rem;
+            padding: 4px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
-        /* ----- SECTIONS ----- */
+        /* ===== SECTIONS ===== */
         section {
-            padding: 50px 0;
+            padding: clamp(30px, 5vw, 50px) 0;
             border-bottom: 1px solid #ddd;
         }
         section:last-of-type {
             border-bottom: none;
         }
         .section-title {
-            font-size: 2rem;
+            font-size: clamp(1.3rem, 3vw, 2rem);
             color: #b22234;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             border-left: 6px solid #fdb813;
-            padding-left: 18px;
+            padding-left: 16px;
+            line-height: 1.2;
         }
         .section-subtitle {
-            font-size: 1.4rem;
+            font-size: clamp(1.1rem, 2.2vw, 1.4rem);
             color: #b22234;
-            margin: 30px 0 12px 0;
+            margin: 25px 0 10px 0;
         }
         .section-subtitle2 {
-            font-size: 1.2rem;
+            font-size: clamp(0.95rem, 1.6vw, 1.2rem);
             color: #2d2d2d;
-            margin: 20px 0 8px 0;
+            margin: 16px 0 6px 0;
             font-weight: 600;
         }
 
-        /* ----- CARDS / GRID ----- */
+        /* ===== CARDS / GRID ===== */
         .grid-2 {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
         .grid-3 {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
         }
         .card {
             background: #fff;
-            padding: 25px 20px;
+            padding: 20px 18px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
             border-top: 4px solid #b22234;
+            height: fit-content;
         }
         .card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
         }
         .card h3 {
             color: #b22234;
-            margin-bottom: 10px;
-            font-size: 1.3rem;
+            margin-bottom: 8px;
+            font-size: clamp(1.1rem, 1.8vw, 1.3rem);
         }
         .card h4 {
             color: #2d2d2d;
-            margin: 12px 0 6px 0;
-            font-size: 1rem;
+            margin: 10px 0 4px 0;
+            font-size: clamp(0.9rem, 1.3vw, 1rem);
+            font-weight: 600;
         }
         .card ul {
-            padding-left: 20px;
-            margin: 8px 0;
+            padding-left: 18px;
+            margin: 6px 0;
         }
         .card ul li {
-            margin-bottom: 4px;
+            margin-bottom: 3px;
+            font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+        }
+        .card p {
+            font-size: clamp(0.85rem, 1.1vw, 0.95rem);
         }
 
-        /* ----- LISTS ----- */
+        /* ===== LISTS ===== */
         .check-list {
             list-style: none;
-            padding: 0;
+            padding: 0 !important;
         }
         .check-list li {
-            padding: 6px 0 6px 28px;
+            padding: 5px 0 5px 28px;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%23b22234" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>') left center no-repeat;
             background-size: 18px;
+            font-size: clamp(0.85rem, 1.1vw, 0.95rem);
         }
 
-        /* ----- MISSION / VISION ----- */
+        /* ===== MISSION / VISION ===== */
         .mission-box {
             background: #fff;
-            padding: 25px;
+            padding: 20px 22px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             border-left: 6px solid #fdb813;
         }
         .mission-box strong {
             color: #b22234;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+        }
+        .mission-box p {
+            font-size: clamp(0.9rem, 1.2vw, 1.05rem);
         }
 
-        /* ----- FAQ ----- */
+        /* ===== FAQ ===== */
         .faq-item {
             background: #fff;
-            padding: 18px 22px;
+            padding: 16px 18px;
             border-radius: 10px;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
         }
         .faq-item strong {
             color: #b22234;
             display: block;
-            font-size: 1.05rem;
+            font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+        }
+        .faq-item p {
+            font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+            margin-top: 4px;
         }
 
-        /* ----- FOOTER ----- */
+        /* ===== FOOTER ===== */
         footer {
             background: #2d2d2d;
             color: #ccc;
-            padding: 30px 0;
+            padding: 25px 0;
             text-align: center;
         }
         footer a {
@@ -213,47 +257,190 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px 30px;
-            margin: 12px 0;
+            gap: 10px 25px;
+            margin: 10px 0;
         }
         footer .footer-links a {
             color: #ccc;
+            font-size: clamp(0.8rem, 1.2vw, 0.95rem);
         }
         footer .footer-links a:hover {
             color: #fdb813;
             text-decoration: none;
         }
+        footer p {
+            font-size: clamp(0.75rem, 1.1vw, 0.9rem);
+        }
 
-        /* ----- RESPONSIVE ----- */
-        @media (max-width: 768px) {
-            .grid-2,
-            .grid-3 {
-                grid-template-columns: 1fr;
+        /* ======================================== */
+        /* ===== FULL RESPONSIVE BREAKPOINTS ===== */
+        /* ======================================== */
+
+        /* ----- TABLETS & SMALL LAPTOPS (under 992px) ----- */
+        @media (max-width: 992px) {
+            .grid-2 {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
+            .grid-3 {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            }
+            .container {
+                padding: 0 16px;
+            }
+        }
+
+        /* ----- MOBILE LANDSCAPE & SMALL TABLETS (under 768px) ----- */
+        @media (max-width: 768px) {
+            /* Header */
             header h1 {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
             }
             header .contact-bar {
                 flex-direction: column;
-                gap: 6px;
+                gap: 4px 0;
+                padding: 8px 12px;
+                font-size: 0.8rem;
             }
+            header .contact-bar span {
+                flex-wrap: wrap;
+            }
+
+            /* Nav - becomes vertical on small screens */
             nav ul {
-                gap: 6px 12px;
+                flex-direction: column;
+                align-items: center;
+                gap: 3px 0;
+                padding: 4px 0;
             }
             nav ul li a {
                 font-size: 0.85rem;
-                padding: 4px 8px;
+                padding: 6px 14px;
+                width: 100%;
+                text-align: center;
+                white-space: normal;
+            }
+
+            /* Grids */
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            /* Cards */
+            .card {
+                padding: 16px 14px;
+            }
+
+            /* Section */
+            section {
+                padding: 25px 0;
             }
             .section-title {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
+                padding-left: 12px;
+            }
+
+            /* Contact grid */
+            #contact .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            /* Mission box */
+            .mission-box {
+                padding: 16px;
             }
         }
+
+        /* ----- SMALL PHONES (under 480px) ----- */
         @media (max-width: 480px) {
             .container {
                 padding: 0 12px;
             }
+            header h1 {
+                font-size: 1.2rem;
+            }
+            header .tagline {
+                font-size: 0.75rem;
+            }
+            header .contact-bar {
+                font-size: 0.7rem;
+                padding: 6px 10px;
+                gap: 2px;
+            }
+            .section-title {
+                font-size: 1.1rem;
+                padding-left: 10px;
+                border-left-width: 4px;
+            }
+            .card {
+                padding: 14px 12px;
+                border-top-width: 3px;
+            }
+            .card h3 {
+                font-size: 1rem;
+            }
+            .mission-box {
+                padding: 14px;
+                border-left-width: 4px;
+            }
+            .faq-item {
+                padding: 12px 14px;
+            }
+            footer .footer-links {
+                gap: 6px 15px;
+            }
+            nav ul li a {
+                font-size: 0.8rem;
+                padding: 5px 10px;
+            }
+            /* Two column for family types on small screens */
+            .mission-box ul {
+                columns: 1 !important;
+            }
+        }
+
+        /* ----- EXTRA SMALL (under 360px) ----- */
+        @media (max-width: 360px) {
+            header h1 {
+                font-size: 1rem;
+            }
+            .container {
+                padding: 0 8px;
+            }
+            .card {
+                padding: 10px 10px;
+            }
+            .mission-box {
+                padding: 10px 12px;
+            }
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            nav {
+                display: none;
+            }
+            .card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
             section {
-                padding: 30px 0;
+                page-break-inside: avoid;
+            }
+        }
+
+        /* ===== REDUCED MOTION ===== */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+            .card:hover {
+                transform: none !important;
             }
         }
     </style>
@@ -294,7 +481,7 @@
         <div class="container">
             <h2 class="section-title">Welcome</h2>
             <div class="mission-box">
-                <p style="font-size:1.15rem;">
+                <p style="font-size:clamp(1rem, 1.5vw, 1.15rem);">
                     Welcome to <strong>Rising Scholars Head Start Early Learning Center</strong>! We are committed
                     to providing high-quality early childhood education that supports the development of the
                     <strong>whole child</strong>. Through strong family partnerships, engaging learning experiences,
@@ -302,10 +489,10 @@
                 </p>
             </div>
 
-            <div class="grid-2" style="margin-top:25px;">
+            <div class="grid-2" style="margin-top:20px;">
                 <div class="mission-box" style="border-left-color:#b22234;">
                     <strong>&#9733; Our Mission</strong>
-                    <p style="margin-top:8px;">
+                    <p style="margin-top:6px;">
                         At Rising Scholars Head Start, we believe every child deserves a strong start in life.
                         Through nurturing relationships, family partnerships, and developmentally appropriate
                         learning experiences, we support the growth of the whole child — socially, emotionally,
@@ -314,7 +501,7 @@
                 </div>
                 <div class="mission-box" style="border-left-color:#b22234;">
                     <strong>&#9733; Our Vision</strong>
-                    <p style="margin-top:8px;">
+                    <p style="margin-top:6px;">
                         Rising Scholars Head Start strives to create a safe, inclusive, and engaging environment
                         where every child is valued, every family is welcomed, and every learner is empowered to
                         reach their fullest potential.
@@ -329,11 +516,11 @@
         <div class="container">
             <h2 class="section-title">About the Head Start Model</h2>
 
-            <p style="font-size:1.1rem; margin-bottom:20px;">
+            <p style="font-size:clamp(0.95rem, 1.3vw, 1.1rem); margin-bottom:16px;">
                 Head Start was established in <strong>1965</strong> to provide comprehensive educational services
                 to young children and their families. The program focuses on school readiness while supporting
                 children's health, nutrition, social-emotional development, and family engagement.
-                <br><small style="color:#555;">(U.S. Department of Health and Human Services, 2024)</small>
+                <br /><small style="color:#555;">(U.S. Department of Health and Human Services, 2024)</small>
             </p>
 
             <h3 class="section-subtitle">Theoretical Foundation</h3>
@@ -344,24 +531,24 @@
                     relationships and environments that include family, school, and community. This is the
                     foundation of Head Start because it promotes strong partnerships between families and
                     educators.</p>
-                    <p style="margin-top:6px; font-size:0.9rem; color:#555;">(Bronfenbrenner, 1979)</p>
+                    <p style="margin-top:6px; font-size:0.85rem; color:#555;">(Bronfenbrenner, 1979)</p>
                 </div>
                 <div class="card">
                     <h3>Vygotsky</h3>
                     <p>Children learn through <strong>social interactions</strong> with adults and peers.
                     Teachers support learning by guiding children through meaningful conversations,
                     exploration, and collaborative experiences.</p>
-                    <p style="margin-top:6px; font-size:0.9rem; color:#555;">(Vygotsky, 1978)</p>
+                    <p style="margin-top:6px; font-size:0.85rem; color:#555;">(Vygotsky, 1978)</p>
                 </div>
                 <div class="card">
                     <h3>Piaget</h3>
                     <p><strong>Cognitive Development Theory</strong> supports hands-on learning experiences.
                     Children construct knowledge through active exploration and play.</p>
-                    <p style="margin-top:6px; font-size:0.9rem; color:#555;">(Follari, 2019)</p>
+                    <p style="margin-top:6px; font-size:0.85rem; color:#555;">(Follari, 2019)</p>
                 </div>
             </div>
 
-            <h3 class="section-subtitle" style="margin-top:40px;">Supporting the Whole Child</h3>
+            <h3 class="section-subtitle" style="margin-top:30px;">Supporting the Whole Child</h3>
             <div class="grid-2">
                 <div class="card">
                     <h3>What We Nurture</h3>
@@ -384,7 +571,7 @@
                         development while empowering families to become active participants in their children's
                         education.
                     </p>
-                    <p style="margin-top:10px; font-size:0.9rem; color:#555;">
+                    <p style="margin-top:8px; font-size:0.85rem; color:#555;">
                         (U.S. Department of Health and Human Services, 2024)
                     </p>
                     <p style="margin-top:8px;">
@@ -403,23 +590,23 @@
             <h2 class="section-title">Our Classrooms</h2>
 
             <!-- INFANT -->
-            <div class="card" style="margin-bottom:30px;">
-                <h3 style="color:#b22234; font-size:1.6rem;">&#128118; Infant Classroom (Birth–12 Months)</h3>
-                <div class="grid-2" style="margin-top:15px;">
+            <div class="card" style="margin-bottom:25px;">
+                <h3 style="color:#b22234; font-size:clamp(1.2rem, 2.2vw, 1.6rem);">&#128118; Infant Classroom (Birth–12 Months)</h3>
+                <div class="grid-2" style="margin-top:12px;">
                     <div>
                         <h4>Curriculum, Instruction &amp; Activities</h4>
                         <p>Infants learn through sensory experiences, responsive caregiving, language interactions, music, and movement.</p>
-                        <h4 style="margin-top:15px;">Supporting Theories</h4>
+                        <h4 style="margin-top:12px;">Supporting Theories</h4>
                         <ul>
                             <li><strong>Piaget</strong> – Sensorimotor learning</li>
                             <li><strong>Maslow</strong> – Meeting basic needs and developing trust</li>
                             <li><strong>Bronfenbrenner</strong> – Family partnerships</li>
                         </ul>
-                        <h4 style="margin-top:15px;">Materials &amp; Resources</h4>
+                        <h4 style="margin-top:12px;">Materials &amp; Resources</h4>
                         <ul>
                             <li>Soft mats, mirrors, sensory toys, board books, cribs, rocking chairs</li>
                         </ul>
-                        <h4 style="margin-top:15px;">Parent Volunteer Opportunities</h4>
+                        <h4 style="margin-top:12px;">Parent Volunteer Opportunities</h4>
                         <ul>
                             <li>Reading books, participating in family events, sharing family traditions</li>
                         </ul>
@@ -432,29 +619,29 @@
                             <li>Tummy time for physical development</li>
                             <li>Talking during daily routines (bath time, feeding, diapering)</li>
                         </ul>
-                        <h4 style="margin-top:15px;">What Families Will See and Hear</h4>
+                        <h4 style="margin-top:12px;">What Families Will See and Hear</h4>
                         <p>Nurturing teacher-child interactions, gentle music, language-rich conversations, and individualized care that meets each baby's unique needs.</p>
                     </div>
                 </div>
             </div>
 
             <!-- TODDLER -->
-            <div class="card" style="margin-bottom:30px;">
-                <h3 style="color:#b22234; font-size:1.6rem;">&#128102; Toddler Classroom (1–2 Years)</h3>
-                <div class="grid-2" style="margin-top:15px;">
+            <div class="card" style="margin-bottom:25px;">
+                <h3 style="color:#b22234; font-size:clamp(1.2rem, 2.2vw, 1.6rem);">&#128102; Toddler Classroom (1–2 Years)</h3>
+                <div class="grid-2" style="margin-top:12px;">
                     <div>
                         <h4>Curriculum, Instruction &amp; Activities</h4>
                         <p>Toddlers engage in dramatic play, sensory exploration, language development activities, and hands-on learning experiences that support their growing independence.</p>
-                        <h4 style="margin-top:15px;">Supporting Theories</h4>
+                        <h4 style="margin-top:12px;">Supporting Theories</h4>
                         <ul>
                             <li><strong>Vygotsky</strong> – Learning through social interaction</li>
                             <li><strong>Piaget</strong> – Exploration and discovery through play</li>
                         </ul>
-                        <h4 style="margin-top:15px;">Materials &amp; Resources</h4>
+                        <h4 style="margin-top:12px;">Materials &amp; Resources</h4>
                         <ul>
                             <li>Blocks, dramatic play center, art materials, sensory bins, picture books</li>
                         </ul>
-                        <h4 style="margin-top:15px;">Parent Volunteer Opportunities</h4>
+                        <h4 style="margin-top:12px;">Parent Volunteer Opportunities</h4>
                         <ul>
                             <li>Story time, family engagement nights, classroom helper, sharing cultural traditions</li>
                         </ul>
@@ -467,7 +654,7 @@
                             <li>Outdoor exploration and nature walks</li>
                             <li>Vocabulary-building conversations during daily routines</li>
                         </ul>
-                        <h4 style="margin-top:15px;">What Families Will See and Hear</h4>
+                        <h4 style="margin-top:12px;">What Families Will See and Hear</h4>
                         <p>Active exploration, teacher-guided learning, songs and movement activities, and cooperative play with peers.</p>
                     </div>
                 </div>
@@ -475,22 +662,22 @@
 
             <!-- PRESCHOOL -->
             <div class="card">
-                <h3 style="color:#b22234; font-size:1.6rem;">&#128218; Preschool Classroom (3–4 Years)</h3>
-                <div class="grid-2" style="margin-top:15px;">
+                <h3 style="color:#b22234; font-size:clamp(1.2rem, 2.2vw, 1.6rem);">&#128218; Preschool Classroom (3–4 Years)</h3>
+                <div class="grid-2" style="margin-top:12px;">
                     <div>
                         <h4>Curriculum, Instruction &amp; Activities</h4>
                         <p>Children participate in literacy, math, science, social studies, art, music, and play-based learning experiences that prepare them for kindergarten.</p>
-                        <h4 style="margin-top:15px;">Supporting Theories</h4>
+                        <h4 style="margin-top:12px;">Supporting Theories</h4>
                         <ul>
                             <li><strong>Vygotsky</strong> – Teacher scaffolding and guided learning</li>
                             <li><strong>Piaget</strong> – Hands-on discovery learning</li>
                             <li><strong>Bronfenbrenner</strong> – Family-school partnerships</li>
                         </ul>
-                        <h4 style="margin-top:15px;">Materials &amp; Resources</h4>
+                        <h4 style="margin-top:12px;">Materials &amp; Resources</h4>
                         <ul>
                             <li>Learning centers, STEM materials, writing supplies, books, manipulatives, art supplies</li>
                         </ul>
-                        <h4 style="margin-top:15px;">Parent Volunteer Opportunities</h4>
+                        <h4 style="margin-top:12px;">Parent Volunteer Opportunities</h4>
                         <ul>
                             <li>Reading to children, assisting with projects, family engagement nights, field trip chaperones, sharing special skills or hobbies</li>
                         </ul>
@@ -504,7 +691,7 @@
                             <li>Nature walks with observation</li>
                             <li>Simple cooking and measuring activities</li>
                         </ul>
-                        <h4 style="margin-top:15px;">What Families Will See and Hear</h4>
+                        <h4 style="margin-top:12px;">What Families Will See and Hear</h4>
                         <p>Play-based instruction, small-group learning, collaborative projects, teacher-child discussions, and regular family conferences.</p>
                     </div>
                 </div>
@@ -516,11 +703,11 @@
     <section id="family" style="background:#fff;">
         <div class="container">
             <h2 class="section-title">Family Engagement</h2>
-            <p style="font-size:1.15rem; margin-bottom:20px;">
+            <p style="font-size:clamp(1rem, 1.4vw, 1.15rem); margin-bottom:16px;">
                 Families are children's <strong>first and most important teachers</strong>. We encourage
                 participation through:
             </p>
-            <div class="grid-3" style="margin-bottom:30px;">
+            <div class="grid-3" style="margin-bottom:25px;">
                 <div class="card">
                     <h3>&#128172; Parent-Teacher Conferences</h3>
                     <p>Regular meetings to discuss child progress and development.</p>
@@ -544,18 +731,18 @@
             </div>
 
             <div class="mission-box" style="border-left-color:#b22234; background:#fff3f0;">
-                <strong style="font-size:1.2rem;">&#10084;&#65039; All families are welcome here!</strong>
-                <p style="margin-top:10px;">
+                <strong style="font-size:clamp(1.05rem, 1.6vw, 1.2rem);">&#10084;&#65039; All families are welcome here!</strong>
+                <p style="margin-top:8px;">
                     We welcome and celebrate families of all kinds including:
                 </p>
-                <ul style="padding-left:25px; margin-top:8px; columns:2 160px;">
+                <ul style="padding-left:20px; margin-top:6px; columns:2 150px;">
                     <li>&#8226; Single-parent households</li>
                     <li>&#8226; Foster families</li>
                     <li>&#8226; Grandparents raising grandchildren</li>
                     <li>&#8226; Military families</li>
                     <li>&#8226; LGBTQ+ families</li>
                 </ul>
-                <p style="margin-top:12px;">
+                <p style="margin-top:10px;">
                     We use <strong>inclusive language</strong>, celebrate diverse family structures,
                     and ensure every child sees their family represented in our classroom materials and displays.
                 </p>
@@ -570,7 +757,7 @@
 
             <div class="faq-item">
                 <strong>&#128241; How will I receive information if I don't have internet access?</strong>
-                <p style="margin-top:6px;">
+                <p>
                     We share information through <strong>printed newsletters</strong>, flyers, phone calls,
                     text messages, Class Dojo, parent-teacher conferences, and family engagement events.
                 </p>
@@ -578,7 +765,7 @@
 
             <div class="faq-item">
                 <strong>&#127758; How do you support families who speak languages other than English?</strong>
-                <p style="margin-top:6px;">
+                <p>
                     We provide <strong>translated materials</strong> when possible and use translation tools
                     or interpreters when needed. We want every family to feel comfortable communicating with
                     our center.
@@ -587,7 +774,7 @@
 
             <div class="faq-item">
                 <strong>&#128640; How will the center be advertised?</strong>
-                <p style="margin-top:6px;">
+                <p>
                     We advertise through <strong>social media</strong>, community events, local libraries,
                     churches, and other community organizations. We also encourage current families to share
                     information with friends and relatives.
@@ -596,7 +783,7 @@
 
             <div class="faq-item">
                 <strong>&#128101; How do you encourage families from different family structures to participate?</strong>
-                <p style="margin-top:6px;">
+                <p>
                     We use <strong>inclusive language</strong> in all communications and create family engagement
                     opportunities that are welcoming to everyone. Our classroom books, materials, and displays
                     reflect different types of families so that every child feels represented.
@@ -609,34 +796,34 @@
     <section id="contact" style="background:#fff;">
         <div class="container">
             <h2 class="section-title">Contact Us</h2>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:30px;">
+            <div class="grid-2">
                 <div>
                     <div class="card" style="border-top-color:#fdb813;">
                         <h3>&#128205; Visit Us</h3>
-                        <p style="font-size:1.1rem;"><strong>Rising Scholars Head Start Early Learning Center</strong></p>
+                        <p style="font-size:clamp(1rem, 1.3vw, 1.1rem);"><strong>Rising Scholars Head Start Early Learning Center</strong></p>
                         <p>4544 Myhand Street<br />Addis, LA 70710</p>
-                        <p style="margin-top:10px;"><strong>&#128339; Hours:</strong> Monday–Friday, 6:00 a.m. – 6:00 p.m.</p>
+                        <p style="margin-top:8px;"><strong>&#128339; Hours:</strong> Monday–Friday, 6:00 a.m. – 6:00 p.m.</p>
                         <p><strong>&#128222; Phone:</strong> 225-405-5288</p>
                         <p><strong>&#128231; Email:</strong> RisingscholarsHS@gmail.com</p>
-                        <p style="margin-top:10px;"><strong>&#128118; Ages Served:</strong> Birth – 4 Years</p>
+                        <p style="margin-top:8px;"><strong>&#128118; Ages Served:</strong> Birth – 4 Years</p>
                     </div>
                 </div>
                 <div>
                     <div class="card" style="border-top-color:#fdb813;">
                         <h3>&#128220; References</h3>
-                        <p style="font-size:0.9rem; margin-bottom:8px;">
+                        <p style="font-size:clamp(0.8rem, 1vw, 0.9rem); margin-bottom:6px;">
                             Bronfenbrenner, U. (1979). <em>The ecology of human development</em>. Harvard University Press.
                         </p>
-                        <p style="font-size:0.9rem; margin-bottom:8px;">
+                        <p style="font-size:clamp(0.8rem, 1vw, 0.9rem); margin-bottom:6px;">
                             Follari, L. M. (2019). <em>Foundations and best practices in early childhood education</em> (4th ed.). Pearson.
                         </p>
-                        <p style="font-size:0.9rem; margin-bottom:8px;">
+                        <p style="font-size:clamp(0.8rem, 1vw, 0.9rem); margin-bottom:6px;">
                             NAEYC. (2020). <em>Developmentally appropriate practice</em>. https://www.naeyc.org
                         </p>
-                        <p style="font-size:0.9rem; margin-bottom:8px;">
+                        <p style="font-size:clamp(0.8rem, 1vw, 0.9rem); margin-bottom:6px;">
                             U.S. DHHS. (2024). <em>Head Start program performance standards</em>. https://eclkc.ohs.acf.hhs.gov
                         </p>
-                        <p style="font-size:0.9rem;">
+                        <p style="font-size:clamp(0.8rem, 1vw, 0.9rem);">
                             Vygotsky, L. S. (1978). <em>Mind in society</em>. Harvard University Press.
                         </p>
                     </div>
@@ -648,8 +835,8 @@
     <!-- ===== FOOTER ===== -->
     <footer>
         <div class="container">
-            <p style="font-size:1.2rem; color:#fdb813;">Rising Scholars Head Start Early Learning Center</p>
-            <p style="font-size:0.95rem;">&ldquo;Where Young Minds Rise and Futures Begin.&rdquo;</p>
+            <p style="font-size:clamp(1rem, 1.6vw, 1.2rem); color:#fdb813; font-weight:600;">Rising Scholars Head Start Early Learning Center</p>
+            <p style="font-size:clamp(0.8rem, 1.1vw, 0.95rem);">&ldquo;Where Young Minds Rise and Futures Begin.&rdquo;</p>
             <div class="footer-links">
                 <a href="#home">Home</a>
                 <a href="#about">About</a>
@@ -658,7 +845,7 @@
                 <a href="#faq">FAQ</a>
                 <a href="#contact">Contact</a>
             </div>
-            <p style="margin-top:15px; font-size:0.85rem; color:#888;">
+            <p style="margin-top:10px; font-size:clamp(0.7rem, 1vw, 0.85rem); color:#888;">
                 &copy; 2026 Rising Scholars Head Start. All rights reserved.
             </p>
         </div>
